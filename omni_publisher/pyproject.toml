@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omni-publisher"
+dynamic = ["version"]
+dependencies = [
+  "pydantic>=2",
+  "httpx[http2]>=0.27",
+  "dynaconf>=3",
+  "ffmpeg-python",
+  "pillow",
+  "dramatiq[redis]",
+]
+
+[project.entry-points."omni_publisher.adapters"]
+twitter = "omni_publisher.adapters.twitter:TwitterAdapter"
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+addopts = "-q"
